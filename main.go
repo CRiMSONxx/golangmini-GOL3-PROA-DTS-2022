@@ -53,6 +53,11 @@ func setupRouter() *gin.Engine {
             "tasks": tasks,
         })
 	})
+	r.GET("/add", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "tasks_add.html", gin.H{
+			
+        })
+	})
 	
 
 	r.GET("/edit/:id", func(c *gin.Context) {
@@ -61,7 +66,7 @@ func setupRouter() *gin.Engine {
 		
 		if err == nil {
 			tugas := tasks[idtask]
-			c.HTML(http.StatusOK, "tasks_edit.html", gin.H{
+			c.HTML(http.StatusOK, "task_edit.html", gin.H{
 				"tugas_single": tugas,
 			})
 		} else {
