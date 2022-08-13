@@ -11,19 +11,19 @@
     <title>Tambah Tugas Baru</title>
   </head>
   <body>
-    <form>
+    <form method="POST" action="/edit/save/{{ .id }}">
         <div class="form-group row">
           <label for="inputTugas3" class="col-sm-2 col-form-label">Tugas</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="inputTugas3" placeholder="Tugas" value="{{ .tugas_single.Isi }}" required>
+            <input type="text" class="form-control" id="inputTugas3" placeholder="Tugas" name="isi" value="{{ .tugas_single.Isi }}" required>
           </div>
         </div>
         <div class="form-group row">
           <label for="inputOleh" class="col-sm-2 col-form-label">Dikerjakan oleh</label>
           <div class="col-sm-10">
-            <select id="inputOleh" class="form-control">
+            <select id="inputOleh" class="form-control" name="dikerjakan_oleh">
               <option >Choose...</option>
-              <option value="P1"{{if eq .tugas_single.Dikerjakan_oleh "P1"}} selected {{end}}>Pekerja II</option>
+              <option value="P1"{{if eq .tugas_single.Dikerjakan_oleh "P1"}} selected {{end}}>Pekerja I</option>
               <option value="P2"{{if eq .tugas_single.Dikerjakan_oleh "P2"}} selected {{end}}>Pekerja II</option>
               <option value="P3"{{if eq .tugas_single.Dikerjakan_oleh "P3"}} selected {{end}}>Pekerja III</option>
             </select>
@@ -32,7 +32,7 @@
         <div class="form-group row">
             <label for="inputOleh" class="col-sm-2 col-form-label">Deadline</label>
             <div class="col-sm-10">
-                <input id="datepickerfrom" name="Deadline" width="250" type="date" required value="{{.Deadline}}" />
+                <input id="datepickerfrom" name="deadline" width="250" type="date" required value="{{.tugas_single.Deadline}}" />
             </div>
         </div>
         
@@ -40,7 +40,7 @@
           <div class="col-sm-2">Status</div>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck1" value="1">
+              <input class="form-check-input" type="checkbox" id="gridCheck1" value="1" name="status"{{if eq .tugas_single.Status 1}}checked{{end}}>
               <label class="form-check-label" for="gridCheck1">
                 Selesai / OK
               </label>
